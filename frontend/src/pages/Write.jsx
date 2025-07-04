@@ -1,11 +1,22 @@
 import { useUser } from "@clerk/clerk-react";
 import ReactQuill from "react-quill-new";
 import "react-quill-new/dist/quill.snow.css";
-import "../styles/write.css"
+import "../styles/write.css";
 import Upload from "../components/common/Upload";
+import { useBlog } from "../BlogContext";
 
 const Write = () => {
   const { isLoaded, isSignedIn } = useUser();
+
+  const {
+    title,
+    content,
+    category,
+    setTitle,
+    setContent,
+    setCategory,
+    createBlog,
+  } = useBlog();
 
   if (!isLoaded) {
     return (
@@ -21,6 +32,11 @@ const Write = () => {
     );
   }
 
+  const handleSubmit =(e)=>{
+    e.preventDefault();
+    createBlog(title, content, category)
+  }
+
   return (
     <div className="h-full m-2 md:m-7 p-3 md:p-8 flex flex-col gap-7 border rounded-2xl bg-white">
       {/* TITLE AND LOGO */}
@@ -32,7 +48,7 @@ const Write = () => {
       </div>
 
       {/* FORM */}
-      <form className="flex flex-col gap-6">
+      <form onSubmit={handleSubmit} className="flex flex-col gap-6">
         <div className="-mb-2 md:flex items-end">
           {/* COVER IMAGE */}
           <Upload />
@@ -45,6 +61,8 @@ const Write = () => {
             <select
               id="category"
               name="cat"
+              value={category}
+              onChange={(e)=>setCategory(e.target.value)}
               className="p-2 rounded outline-none bg-white text-sm text-gray-800"
             >
               <option value="Web Dev">Web Dev</option>
@@ -60,6 +78,8 @@ const Write = () => {
         <input
           type="text"
           placeholder="Title"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
           className="-mb-2 p-2 text-gray-700 text-3xl outline-none border rounded-md"
           required
         />
@@ -76,11 +96,13 @@ const Write = () => {
               ["clean"],
             ],
           }}
-          className="customQuill" 
+          value={content}
+          onChange={setContent}
+          className="customQuill"
         />
 
         {/* CREATE BUTTON */}
-        <button className="my-2 px-3 py-2 w-20 text-white bg-green-700 hover:bg-green-800 rounded-md transition duration-150 ease-in-out active:scale-95">
+        <button type="submit" className="my-2 px-3 py-2 w-20 text-white bg-green-700 hover:bg-green-800 rounded-md transition duration-150 ease-in-out active:scale-95">
           Publish
         </button>
       </form>
