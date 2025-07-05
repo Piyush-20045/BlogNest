@@ -58,6 +58,7 @@ useEffect(()=> {
         createBlog,
         setBlogs,
         setImageUrl,
+        fetchBlogs,
       }}
     >
       {children}
@@ -65,6 +66,6 @@ useEffect(()=> {
   );
 };
 
-export const useBlog = () => {
+export const useBlogs = () => {
   return useContext(BlogContext);
 };

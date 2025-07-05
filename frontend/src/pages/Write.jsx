@@ -3,10 +3,12 @@ import ReactQuill from "react-quill-new";
 import "react-quill-new/dist/quill.snow.css";
 import "../styles/write.css";
 import Upload from "../components/common/Upload";
-import { useBlog } from "../BlogContext";
+import { useBlogs } from "../BlogContext";
+import { useEffect, useRef } from "react";
 
 const Write = () => {
   const { isLoaded, isSignedIn } = useUser();
+  const uploadRef = useRef();
 
   const {
     title,
@@ -16,7 +18,7 @@ const Write = () => {
     setContent,
     setCategory,
     createBlog,
-  } = useBlog();
+  } = useBlogs();
 
   if (isLoaded && !isSignedIn) {
     return (
@@ -29,7 +31,30 @@ const Write = () => {
   const handleSubmit =(e)=>{
     e.preventDefault();
     createBlog(title, content, category)
+    setTitle("")
+    setContent("")
+    uploadRef.current.reset();
   }
+
+  // quill-editor copy-paste the inline style too , so this function prevents it
+  const quillRef = useRef();
+  useEffect(() => {
+    const editor = quillRef.current.getEditor();
+
+    // Remove all formatting when pasting
+    editor.clipboard.addMatcher(Node.ELEMENT_NODE, (node, delta) => {
+      // Remove only style attributes (like background, font, etc.)
+      delta.ops = delta.ops.map(op => {
+        if (op.attributes) {
+          // Remove unwanted styles like background, color, font, etc.
+          const { background, color, font, ...allowedAttrs } = op.attributes;
+          return { insert: op.insert, attributes: allowedAttrs };
+        }
+        return op;
+      });
+      return delta;
+    });
+  }, []);
 
   return (
     <div className="h-full m-2 md:m-7 p-3 md:p-8 flex flex-col gap-7 border rounded-2xl bg-white">
@@ -45,7 +70,7 @@ const Write = () => {
       <form onSubmit={handleSubmit} className="flex flex-col gap-6">
         <div className="-mb-2 md:flex items-end">
           {/* COVER IMAGE */}
-          <Upload />
+          <Upload ref={uploadRef}/>
 
           {/* CATEGORIES */}
           <div className="mt-4 w-full md:w-fit md:ml-7 flex border rounded-md bg-gray-100 text-gray-700">
@@ -90,6 +115,7 @@ const Write = () => {
               ["clean"],
             ],
           }}
+          ref={quillRef}
           value={content}
           onChange={setContent}
           className="customQuill"
