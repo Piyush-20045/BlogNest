@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 const BlogContext = createContext();
 
@@ -7,6 +7,8 @@ export const BlogProvider = ({ children }) => {
   const [content, setContent] = useState("");
   const [category, setCategory] = useState("Web Dev");
   const [date, setDate] = useState(Date().toString().slice(4, 15));
+  const [blogs, setBlogs] = useState([]);
+  const [imageUrl, setImageUrl] = useState("");
 
   const createBlog = async()=> {
     try {
@@ -15,7 +17,7 @@ export const BlogProvider = ({ children }) => {
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({title, content, category})
+            body: JSON.stringify({title, content, category, imageUrl})
         })
         const data = await response.json();
         console.log("Blog saved", data)
@@ -23,6 +25,21 @@ export const BlogProvider = ({ children }) => {
         console.error("Error saving blog", error)
     }
   }
+
+//   fetching blogs
+const fetchBlogs = async() => {
+    try{
+        const res = await fetch("http://localhost:5000/api/blogs");
+        const data = await res.json();
+        console.log(data)
+        setBlogs(data);
+    }catch(error) {
+        console.error("Error in fetching blogs", error);
+    }
+}
+useEffect(()=> {
+        fetchBlogs();
+    }, [])
   
 
   return (
@@ -32,11 +49,15 @@ export const BlogProvider = ({ children }) => {
         content,
         category,
         date,
+        blogs,
+        imageUrl,
         setTitle,
         setContent,
         setCategory,
         setDate,
         createBlog,
+        setBlogs,
+        setImageUrl,
       }}
     >
       {children}

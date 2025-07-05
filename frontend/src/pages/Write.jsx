@@ -18,12 +18,6 @@ const Write = () => {
     createBlog,
   } = useBlog();
 
-  if (!isLoaded) {
-    return (
-      <div className="m-12 text-xl font-title text-center">Loading...</div>
-    );
-  }
-
   if (isLoaded && !isSignedIn) {
     return (
       <div className="m-12 text-xl font-title text-center">

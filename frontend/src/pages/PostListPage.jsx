@@ -2,6 +2,7 @@ import PostList from "../components/home/PostList";
 import SideMenu from "../components/common/SideMenu";
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
+import { useBlog } from "../BlogContext";
 
 const PostListPage = () => {
   const [Open, setOpen] = useState(false);
@@ -9,6 +10,9 @@ const PostListPage = () => {
   const queryParams = new URLSearchParams(location.search);
 
   const category = queryParams.get("cat");
+
+  // Blogs
+  const {blogs} = useBlog();
   
 
   return (
