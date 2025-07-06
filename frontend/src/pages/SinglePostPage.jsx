@@ -1,19 +1,18 @@
 import { Link, useParams } from "react-router-dom";
 import PostMenuActions from "../components/post/PostMenuActions";
 import Comments from "../components/post/Comments";
-import { useEffect, useState } from "react";
 import { useBlogs } from "../BlogContext";
 
 const SinglePostPage = () => {
   const { id } = useParams();
   const { blogs } = useBlogs();
-  const [loading, setLoading] = useState(true);
 
   const blog = blogs.find((j) => j._id === id);
 
   if (!blog) {
     return <div>Loading post...</div>;
   }
+  
 
   return (
     <div className="p-1 md:p-6 mb-6 bg-white h-full">
@@ -28,13 +27,13 @@ const SinglePostPage = () => {
 
           {/* AUTHOR and DATE */}
           <div className="mt-2 mx-6 text-gray-700 text-sm">
-            <span>Piyush Yadav - </span>
-            <span> 03 Jan 2025</span>
+            <span>{blog?.author?.name} - </span>
+            <span>{blog.createdAt.slice(0, 10)}</span>
           </div>
 
           <div className="flex justify-center">
             <img
-              src={blog.imageUrl}
+              src={blog.imgUrl}
               className="p-3 md:w-4/6 flex justify-center items-center rounded-2xl"
             />
           </div>
@@ -42,7 +41,7 @@ const SinglePostPage = () => {
           {/* CONTENT */}
           <div
             dangerouslySetInnerHTML={{ __html: blog.content }}
-            className="mt-4 mx-14 text-xl flex flex-col gap-3"
+            className="mt-4 mx-14 text-xl text-gray-800 flex flex-col gap-3"
           ></div>
         </div>
 
@@ -53,11 +52,10 @@ const SinglePostPage = () => {
           <div className="flex flex-col gap-3 mb-2 px-2">
             <div className="flex items-center gap-2">
               <img
-                src="userImg.jpg"
-                alt=""
+                src={blog?.author?.profilePhoto}
                 className="rounded-full object-cover w-8 h-8"
               />
-              <Link>Piyush Yadav</Link>
+              <Link>{blog?.author?.name}</Link>
             </div>
           </div>
 

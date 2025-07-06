@@ -7,7 +7,7 @@ import { useBlogs } from "../BlogContext";
 import { useEffect, useRef } from "react";
 
 const Write = () => {
-  const { isLoaded, isSignedIn } = useUser();
+  const { user, isLoaded, isSignedIn } = useUser();
   const uploadRef = useRef();
 
   const {
@@ -18,6 +18,7 @@ const Write = () => {
     setContent,
     setCategory,
     createBlog,
+    fetchBlogs,
   } = useBlogs();
 
   if (isLoaded && !isSignedIn) {
@@ -30,9 +31,10 @@ const Write = () => {
 
   const handleSubmit =(e)=>{
     e.preventDefault();
-    createBlog(title, content, category)
-    setTitle("")
-    setContent("")
+    createBlog();
+    fetchBlogs();
+    setTitle("");
+    setContent("");
     uploadRef.current.reset();
   }
 

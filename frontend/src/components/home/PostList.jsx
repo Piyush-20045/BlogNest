@@ -46,8 +46,8 @@ const PostList = () => {
 
               {/* name and category */}
               <div className="text-gray-600 text-sm">
-                <span>Piyush Yadav - </span>
-                <span>{blog.createdAt.slice(0, 10).toUpperCase()}</span>
+                <span>{blog?.author?.name} - </span>
+                <span>{blog.createdAt.slice(0, 10)}</span>
               </div>
             </div>
           </div>

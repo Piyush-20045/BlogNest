@@ -10,8 +10,12 @@ const blogSchema = new mongoose.Schema({
         required: true
     },
     category: String,
-    imageUrl: String,
-    date: String,
+    imgUrl: String,
+    author: {
+        name: String,
+        userId: String,
+        profilePhoto: String,
+    },
     createdAt: {
         type: Date,
         default: Date.now,
