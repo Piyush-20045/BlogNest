@@ -2,9 +2,8 @@ import { forwardRef, useRef, useImperativeHandle, useState } from "react";
 import { useBlogs } from "../../BlogContext";
 
 const Upload = forwardRef((props, ref) => {
-  
   const fileInputRef = useRef();
-  const { setImageUrl } =useBlogs();
+  const { setImageUrl } = useBlogs();
 
   // Expose reset method to parent
   useImperativeHandle(ref, () => ({
@@ -27,6 +26,7 @@ const Upload = forwardRef((props, ref) => {
       const formData = new FormData();
       formData.append("file", file);
       formData.append("fileName", file.name);
+      formData.append("folder", "BlogNest");
       formData.append("publicKey", uploadAuth.publicKey);
       formData.append("signature", uploadAuth.signature);
       formData.append("expire", uploadAuth.expire);
@@ -56,11 +56,7 @@ const Upload = forwardRef((props, ref) => {
         ref={fileInputRef}
         onChange={handleUpload}
         accept="image/*"
-        className="bg-white text-sm text-gray-600 border-2 border-gray-300 rounded-md file:mr-4 file:py-2 file:px-4
-                     file:rounded-full file:border-0
-                     file:text-sm file:font-semibold
-                     file:bg-blue-50 file:text-blue-700
-                     hover:file:bg-blue-100 cursor-pointer"
+        className="bg-white text-sm text-gray-600 border-2 border-gray-300 rounded-md file:mr-4 file:py-2 file:px-4 file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 cursor-pointer"
       />
     </div>
   );

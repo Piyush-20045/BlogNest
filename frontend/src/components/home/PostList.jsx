@@ -16,17 +16,17 @@ const PostList = () => {
             key={blog._id}
             className="mt-2 w-80 p-1 sm:w-72 bg-gray-50 border border-gray-300 rounded-md hover:shadow-lg transition-shadow"
           >
-            <img src={blog.imageUrl} className="mx-auto w-40" />
+            <img src={blog.imageUrl} className="mx-auto rounded" />
 
             {/* DETAILS */}
             <div className="bg-white px-3 pt-1 rounded-lg flex flex-col gap-2">
               {/* title */}
-              <Link className="block text-gray-700 text-sm">
+              <span className="block text-gray-700 text-sm">
                 {blog.category}
-              </Link>
+              </span>
               <Link
-                to="/test"
-                className="text-xl sm:text-2xl font-semibold text-gray-900 line-clamp-2"
+                to={`/post/${blog._id}`}
+                className="text-xl sm:text-2xl font-semibold text-gray-800 line-clamp-2"
               >
                 {blog.title}
               </Link>
@@ -34,15 +34,18 @@ const PostList = () => {
               {/* Paragraph */}
               <p
                 dangerouslySetInnerHTML={{ __html: blog.content }}
-                className="line-clamp-4"
+                className="text-gray-700 line-clamp-2"
               ></p>
 
-              <Link to="test" className="text-blue-800">
+              <Link
+                to={`/post/${blog._id}`}
+                className="-mt-2 text-sm text-blue-800 hover:underline"
+              >
                 Read more
               </Link>
 
               {/* name and category */}
-              <div className="text-gray-700 text-sm">
+              <div className="text-gray-600 text-sm">
                 <span>Piyush Yadav - </span>
                 <span>{blog.createdAt.slice(0, 10).toUpperCase()}</span>
               </div>

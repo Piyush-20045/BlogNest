@@ -17,7 +17,7 @@ const PostMenuActions = () => {
       </div>
 
       <div className="flex text-sm cursor-pointer px-3">
-        <img src="delete1.svg" alt="" />
+        <img src="delete1.svg"/>
         <span>Delete this Post</span>
       </div>
 

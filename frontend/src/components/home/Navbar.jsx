@@ -73,7 +73,7 @@ const Navbar = () => {
           }}
         >
           <NavLink to=""> Home </NavLink>
-          <NavLink to="">Trending</NavLink>
+          <NavLink to="posts">Trending</NavLink>
           <NavLink to="write">Write</NavLink>
           <NavLink to="about">About</NavLink>
         </div>
