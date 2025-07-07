@@ -7,6 +7,8 @@ const PostMenuActions = () => {
   const navigate = useNavigate();
 
   const deleteBlog = async () => {
+    const confirmDelete = window.confirm("Do you want to delete it?");
+    if (!confirmDelete) return;
     try {
       await fetch(`${import.meta.env.VITE_BACKEND_PORT}/api/blogs/${id}`, {
         method: "DELETE",
@@ -35,10 +37,13 @@ const PostMenuActions = () => {
         <span>Save this Post</span>
       </div>
 
-      <div className="flex text-sm cursor-pointer px-3">
+      <button
+        onClick={() => deleteBlog()}
+        className="flex text-sm cursor-pointer px-3 hover:text-gray-800"
+      >
         <img src="../delete.svg" />
-        <button onClick={() => deleteBlog()}>Delete this Post</button>
-      </div>
+        <span>Delete this Post</span>
+      </button>
     </div>
   );
 };

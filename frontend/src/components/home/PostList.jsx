@@ -16,7 +16,7 @@ const PostList = () => {
             key={blog._id}
             className="mt-2 w-80 p-1 sm:w-72 bg-gray-50 border border-gray-300 rounded-md hover:shadow-lg transition-shadow"
           >
-            <img src={blog.imageUrl} className="mx-auto rounded" />
+            <img src={blog.imgUrl} className="mx-auto rounded" />
 
             {/* DETAILS */}
             <div className="bg-white px-3 pt-1 rounded-lg flex flex-col gap-2">

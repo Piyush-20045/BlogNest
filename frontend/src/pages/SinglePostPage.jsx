@@ -52,10 +52,10 @@ const SinglePostPage = () => {
           <div className="flex flex-col gap-3 mb-2 px-2">
             <div className="flex items-center gap-2">
               <img
-                src={blog?.author?.profilePhoto}
+                src={blog?.author?.profilePhoto || "/profilePhoto.png"}
                 className="rounded-full object-cover w-8 h-8"
               />
-              <Link>{blog?.author?.name}</Link>
+              <Link>{blog?.author?.name || "Anonymous"}</Link>
             </div>
           </div>
 

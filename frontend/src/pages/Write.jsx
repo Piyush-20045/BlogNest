@@ -32,10 +32,11 @@ const Write = () => {
   const handleSubmit =(e)=>{
     e.preventDefault();
     createBlog();
-    fetchBlogs();
     setTitle("");
     setContent("");
     uploadRef.current.reset();
+    alert("Post created!");
+    fetchBlogs();
   }
 
   // quill-editor copy-paste the inline style too , so this function prevents it
@@ -84,13 +85,13 @@ const Write = () => {
               name="cat"
               value={category}
               onChange={(e)=>setCategory(e.target.value)}
-              className="p-2 rounded outline-none bg-white text-sm text-gray-800"
+              className="p-2 rounded outline-none bg-white text-sm text-gray-800 cursor-pointer"
             >
               <option value="Web Dev">Web Dev</option>
               <option value="Technology">Technology</option>
               <option value="Finance">Finance</option>
               <option value="Fitness">Fitness</option>
-              <option value="">Marketing</option>
+              <option value="Marketing">Marketing</option>
             </select>
           </div>
         </div>
