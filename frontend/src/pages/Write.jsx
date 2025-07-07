@@ -7,7 +7,7 @@ import { useBlogs } from "../BlogContext";
 import { useEffect, useRef } from "react";
 
 const Write = () => {
-  const { user, isLoaded, isSignedIn } = useUser();
+  const { isLoaded, isSignedIn } = useUser();
   const uploadRef = useRef();
 
   const {

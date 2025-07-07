@@ -1,4 +1,23 @@
+import { useNavigate, useParams } from "react-router-dom";
+import { useBlogs } from "../../BlogContext";
+
 const PostMenuActions = () => {
+  const { fetchBlogs } = useBlogs();
+  const { id } = useParams();
+  const navigate = useNavigate();
+
+  const deleteBlog = async () => {
+    try {
+      await fetch(`${import.meta.env.VITE_BACKEND_PORT}/api/blogs/${id}`, {
+        method: "DELETE",
+      });
+      alert("Blog deleted successfully!");
+      fetchBlogs();
+      navigate("/posts");
+    } catch (error) {
+      alert("Error in deleting blog", error);
+    }
+  };
   return (
     <div className="mb-6">
       <h1 className="mt-8 mb-4 text-sm font-medium">Actions</h1>
@@ -17,10 +36,9 @@ const PostMenuActions = () => {
       </div>
 
       <div className="flex text-sm cursor-pointer px-3">
-        <img src="delete1.svg"/>
-        <span>Delete this Post</span>
+        <img src="../delete.svg" />
+        <button onClick={() => deleteBlog()}>Delete this Post</button>
       </div>
-
     </div>
   );
 };

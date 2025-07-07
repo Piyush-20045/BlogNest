@@ -3,7 +3,7 @@ import { useBlogs } from "../../BlogContext";
 
 const Upload = forwardRef((props, ref) => {
   const fileInputRef = useRef();
-  const { setImageUrl } = useBlogs();
+  const { setImgUrl } = useBlogs();
 
   // Expose reset method to parent
   useImperativeHandle(ref, () => ({
@@ -41,7 +41,7 @@ const Upload = forwardRef((props, ref) => {
       );
 
       const data = await response.json();
-      setImageUrl(data.url);
+      setImgUrl(data.url);
       if (!response.ok) throw new Error(data.message || "Image upload failed");
     } catch (error) {
       console.error("Upload failed:", error);

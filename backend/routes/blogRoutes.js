@@ -3,6 +3,7 @@ const express = require("express");
 const router = express.Router();
 const Blog = require("../models/blogModel")
 
+// to create a blog
 router.post("/", async(req, res) => {
     try{
         const newBlog = new Blog(req.body);
@@ -19,6 +20,15 @@ router.get("/", async(req, res) => {
         res.json(blogs);
     }catch(err){
         res.status(500).json({ error:"Error in fetching blogs"})
+    }
+})
+
+router.delete("/:id", async(req, res) => {
+    try{
+        await Blog.findByIdAndDelete(req.params.id);
+        res.status(200).json({ message: "Blog deleted"})
+    } catch(error) {
+        res.status(500).json({ error: "Failed to delete blog"})
     }
 })
 
