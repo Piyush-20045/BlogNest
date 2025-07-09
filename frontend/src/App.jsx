@@ -8,6 +8,7 @@ import Register from "./pages/Register.jsx";
 import SinglePostPage from "./pages/SinglePostPage.jsx";
 import ScrollToTop from "./components/ScrollToTop.jsx";
 import PostListPage from "./pages/PostListPage.jsx";
+import EditBlog from "./pages/EditBlog.jsx";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/posts" element={<PostListPage />} />
         <Route path="/post/:id" element={<SinglePostPage />} />
+        <Route path="/edit/:id" element={<EditBlog />} />
       </Routes>
     </div>
   );
