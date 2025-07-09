@@ -5,7 +5,7 @@ const SideMenu = () => {
   return (
     <div className="flex flex-col gap-1 m-2 border md:border-none rounded-xl shadow-md md:shadow-none md:sticky top-24 ">
       <Search />
-      <span className="mt-6 mx-8 text-gray-700">Categories - </span>
+      <span className="md:mt-6 mx-8 text-gray-700">Categories - </span>
       <div className="flex flex-col gap-2 text-sm ml-10 p-3">
         <Link className="underline" to="/posts?cat=All Posts">
           All

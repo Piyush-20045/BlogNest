@@ -12,6 +12,8 @@ export const BlogProvider = ({ children }) => {
   const [blogs, setBlogs] = useState([]);
   const [imgUrl, setImgUrl] = useState("");
 
+  const [filteredBlogs, setFilteredBlogs] = useState([]);
+
   const createBlog = async () => {
     if (!user) return;
     
@@ -44,7 +46,7 @@ export const BlogProvider = ({ children }) => {
   //   fetching blogs
   const fetchBlogs = async () => {
     try {
-      const res = await fetch("http://localhost:5000/api/blogs");
+      const res = await fetch(`${import.meta.env.VITE_BACKEND_PORT}/api/blogs`);
       const data = await res.json();
       setBlogs(data);
     } catch (error) {
@@ -70,6 +72,8 @@ export const BlogProvider = ({ children }) => {
         setBlogs,
         setImgUrl,
         fetchBlogs,
+        filteredBlogs,
+        setFilteredBlogs,
       }}
     >
       {children}

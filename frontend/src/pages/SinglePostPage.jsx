@@ -12,7 +12,6 @@ const SinglePostPage = () => {
   if (!blog) {
     return <div>Loading post...</div>;
   }
-  
 
   return (
     <div className="p-1 md:p-6 mb-6 bg-white h-full">
@@ -21,7 +20,7 @@ const SinglePostPage = () => {
         {/* LEFT SIDE ALL CONTENT */}
         <div className="md:w-4/5">
           {/* TITLE */}
-          <h1 className="pt-5 px-4 text-3xl md:text-5xl text-gray-800 font-semibold">
+          <h1 className="pt-5 px-4 text-3xl md:text-4xl text-gray-800 font-semibold">
             {blog.title}
           </h1>
 
@@ -41,7 +40,7 @@ const SinglePostPage = () => {
           {/* CONTENT */}
           <div
             dangerouslySetInnerHTML={{ __html: blog.content }}
-            className="mt-4 mx-14 text-xl text-gray-800 flex flex-col gap-3"
+            className="mt-4 mx-3 md:mx-14 text-lg text-gray-800 flex flex-col gap-3"
           ></div>
         </div>
 
@@ -57,16 +56,6 @@ const SinglePostPage = () => {
               />
               <Link>{blog?.author?.name || "Anonymous"}</Link>
             </div>
-          </div>
-
-          {/* FACEBOOK AND INSTA */}
-          <div className="flex mb-6 pl-2.5 gap-2">
-            <Link>
-              <img src="facebook.svg" alt="" />
-            </Link>
-            <Link>
-              <img src="instagram.svg" alt="" />
-            </Link>
           </div>
 
           {/* SAVE AND DELETE ICONS */}

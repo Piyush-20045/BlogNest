@@ -2,16 +2,16 @@ import { Link } from "react-router-dom";
 import { useBlogs } from "../../BlogContext";
 
 const PostList = () => {
-  const { blogs } = useBlogs();
+  const { filteredBlogs } = useBlogs();
   return (
     <div>
-      <p className="mt-1 mb-6 text-lg text-center text-gray-600">
+      <p className="w-full mt-1 mb-4 text-lg text-center text-gray-600">
         Recent Posts
       </p>
 
       {/* All mapped blogs */}
       <div className="flex justify-center flex-wrap sm:space-x-2 space-y-2">
-        {blogs.map((blog) => (
+        {filteredBlogs.map((blog) => (
           <div
             key={blog._id}
             className="mt-2 w-80 p-1 sm:w-72 bg-gray-50 border border-gray-300 rounded-md hover:shadow-lg transition-shadow"

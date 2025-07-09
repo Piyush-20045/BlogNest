@@ -17,15 +17,15 @@ const PostListPage = () => {
       <h1 className="ml-7 md:ml-16 mt-6 text-2xl font-serif">{category}</h1>
 
       {/* MOBILE--'MORE CATEGORIES OPTION' */}
-      <div className="md:hidden">
+      <div className="-mt-3 md:hidden">
         <button
           onClick={() => setOpen(!Open)}
-          className="md:hidden ml-7 my-4 p-2 bg-gray-400 text-white rounded-md "
+          className="md:hidden ml-7 my-4 p-2 bg-gray-400 text-sm text-white rounded-md "
         >
           {Open ? "ⓧ Close" : "☰ More Categories"}
         </button>
 
-        <div className={Open ? "block" : "hidden"}>
+        <div className={Open ? "block -mt-4" : "hidden"}>
           <SideMenu />
         </div>
       </div>
