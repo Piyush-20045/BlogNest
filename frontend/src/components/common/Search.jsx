@@ -1,19 +1,24 @@
 import { useEffect, useState } from "react";
 import { useBlogs } from "../../BlogContext";
+import { useLocation } from "react-router-dom";
 
 const Search = () => {
   const {setFilteredBlogs, blogs} = useBlogs();
   const [search, setSearch] = useState("");
 
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const category = queryParams.get("cat");
+
   // SEARCH LOGIC
   useEffect(() => {
     const filtered = blogs.filter((blog)=> {
       const matchSearch = blog.title.toLowerCase().includes(search.toLowerCase())
-
-      return matchSearch;
+      const matchCategory = !category ? true : blog.category.toLowerCase() === category.toLowerCase();
+      return matchSearch && matchCategory;
     })
     setFilteredBlogs(filtered);
-  }, [search, blogs])
+  }, [search, blogs, category])
 
   return (
     // className="flex items-center gap-2 p-2 rounded-full bg-gray-100"

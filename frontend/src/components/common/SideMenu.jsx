@@ -7,23 +7,23 @@ const SideMenu = () => {
       <Search />
       <span className="md:mt-6 mx-8 text-gray-700">Categories - </span>
       <div className="flex flex-col gap-2 text-sm ml-10 p-3">
-        <Link className="underline" to="/posts?cat=All Posts">
+        <Link className="hover:underline hover:text-gray-800" to="/posts">
           All
         </Link>
-        <Link className="underline" to="/posts?cat=Web Dev">
+        <Link className="hover:underline hover:text-gray-800" to="/posts?cat=Web Dev">
           Web Dev
         </Link>
-        <Link className="underline" to="/posts?cat=Technology">
+        <Link className="hover:underline hover:text-gray-800" to="/posts?cat=Technology">
           Technology
         </Link>
-        <Link className="underline" to="/posts?cat=Finance">
+        <Link className="hover:underline hover:text-gray-800" to="/posts?cat=Finance">
           Finance
         </Link>
-        <Link className="underline" to="/posts?cat=Fitness">
+        <Link className="hover:underline hover:text-gray-800" to="/posts?cat=Fitness">
           Fitness
         </Link>
-        <Link className="underline" to="/posts?cat=Marketing">
-          Marketing
+        <Link className="hover:underline hover:text-gray-800" to="/posts?cat=Lifestyle">
+          Lifestyle
         </Link>
       </div>
     </div>

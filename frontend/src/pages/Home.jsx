@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import MainCategories from "../components/home/MainCategories";
-import FeaturedPosts from "../components/home/FeaturedPosts";
 import PostList from "../components/home/PostList";
 
 const Home = () => {
@@ -27,14 +26,12 @@ const Home = () => {
       </div>
 
       {/* CATEGORIES */}
-      <MainCategories />
-
-      {/* FEATURED POSTS */}
-      <FeaturedPosts/>
+      <div className="mb-7">
+        <MainCategories />
+      </div>
 
       {/* POST LIST */}
-      <PostList/>
-      
+      <PostList />
     </div>
   );
 };

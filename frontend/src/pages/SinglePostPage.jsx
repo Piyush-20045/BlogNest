@@ -64,20 +64,38 @@ const SinglePostPage = () => {
           {/* CATEGORIES OPTIONS */}
           <h1 className="mt-8 mb-4 text-sm font-medium">Categories</h1>
           <div className="flex flex-col gap-2 text-sm mb-6 px-4">
-            <Link className="underline" to="/posts?cat=All Posts">
+            <Link className="hover:underline hover:text-gray-800" to="/posts">
               All
             </Link>
-            <Link className="underline" to="/posts?cat=Web Dev">
+            <Link
+              className="hover:underline hover:text-gray-800"
+              to="/posts?cat=Web Dev"
+            >
               Web Dev
             </Link>
-            <Link className="underline" to="/posts?cat=Technology">
+            <Link
+              className="hover:underline hover:text-gray-800"
+              to="/posts?cat=Technology"
+            >
               Technology
             </Link>
-            <Link className="underline" to="/posts?cat=Finance">
+            <Link
+              className="hover:underline hover:text-gray-800"
+              to="/posts?cat=Finance"
+            >
               Finance
             </Link>
-            <Link className="underline" to="/posts?cat=Fitness">
+            <Link
+              className="hover:underline hover:text-gray-800"
+              to="/posts?cat=Fitness"
+            >
               Fitness
+            </Link>
+            <Link
+              className="hover:underline hover:text-gray-800"
+              to="/posts?cat=Lifestyle"
+            >
+              Lifestyle
             </Link>
           </div>
         </div>

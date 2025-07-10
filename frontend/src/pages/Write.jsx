@@ -90,7 +90,7 @@ const Write = () => {
               <option value="Technology">Technology</option>
               <option value="Finance">Finance</option>
               <option value="Fitness">Fitness</option>
-              <option value="Marketing">Marketing</option>
+              <option value="Lifestyle">Lifestyle</option>
             </select>
           </div>
         </div>
