@@ -1,11 +1,14 @@
 import { Link, useParams } from "react-router-dom";
 import PostMenuActions from "../components/post/PostMenuActions";
+import Categories from "../components/common/Categories";
 import Comments from "../components/post/Comments";
 import { useBlogs } from "../BlogContext";
+import { useState } from "react";
 
 const SinglePostPage = () => {
   const { id } = useParams();
   const { blogs } = useBlogs();
+  const [showActions, setShowActions] = useState(false);
 
   const blog = blogs.find((j) => j._id === id);
 
@@ -28,6 +31,30 @@ const SinglePostPage = () => {
           <div className="mt-2 mx-6 text-gray-700 text-sm">
             <span>{blog?.author?.name} - </span>
             <span>{blog.createdAt.slice(0, 10)}</span>
+
+            {/* SHOW ACTIONS FOR MOBILE ONLY */}
+            <div onClick={() => setShowActions(!showActions)} className="md:hidden">
+              <div className="p-2 w-fit border rounded bg-blue-100 active:bg-blue-50">
+                {/* SVG-ICON */}
+                <svg
+                  className={`mb-0.5 w-4 h-4 inline-block transition-transform duration-200 ${
+                    showActions ? "rotate-180" : ""
+                  }`}
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M19 9l-7 7-7-7"
+                  />
+                </svg>
+                More options
+              </div>
+              {showActions ? <PostMenuActions /> : null}
+            </div>
           </div>
 
           <div className="flex justify-center">
@@ -62,41 +89,8 @@ const SinglePostPage = () => {
           <PostMenuActions />
 
           {/* CATEGORIES OPTIONS */}
-          <h1 className="mt-8 mb-4 text-sm font-medium">Categories</h1>
-          <div className="flex flex-col gap-2 text-sm mb-6 px-4">
-            <Link className="hover:underline hover:text-gray-800" to="/posts">
-              All
-            </Link>
-            <Link
-              className="hover:underline hover:text-gray-800"
-              to="/posts?cat=Web Dev"
-            >
-              Web Dev
-            </Link>
-            <Link
-              className="hover:underline hover:text-gray-800"
-              to="/posts?cat=Technology"
-            >
-              Technology
-            </Link>
-            <Link
-              className="hover:underline hover:text-gray-800"
-              to="/posts?cat=Finance"
-            >
-              Finance
-            </Link>
-            <Link
-              className="hover:underline hover:text-gray-800"
-              to="/posts?cat=Fitness"
-            >
-              Fitness
-            </Link>
-            <Link
-              className="hover:underline hover:text-gray-800"
-              to="/posts?cat=Lifestyle"
-            >
-              Lifestyle
-            </Link>
+          <div className="-ml-9">
+            <Categories />
           </div>
         </div>
       </div>

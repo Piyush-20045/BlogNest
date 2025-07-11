@@ -1,13 +1,13 @@
 import ReactQuill from "react-quill-new";
 import Upload from "../components/common/Upload";
-import { useState, useRef, useEffect, captureOwnerStack } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useBlogs } from "../BlogContext";
 import { useNavigate, useParams } from "react-router-dom";
 
 const EditBlog = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { imgUrl, fetchBlogs } = useBlogs();
+  const { imgUrl, fetchBlogs, setImgUrl } = useBlogs();
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [category, setCategory] = useState("");
@@ -43,6 +43,7 @@ const EditBlog = () => {
       setTitle(blog.title);
       setContent(blog.content);
       setCategory(blog.category);
+      setImgUrl(blog.imgUrl);
     };
     fetchJournal();
   }, []);

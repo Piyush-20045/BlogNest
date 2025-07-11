@@ -4,12 +4,10 @@ import "react-quill-new/dist/quill.snow.css";
 import "../styles/write.css";
 import Upload from "../components/common/Upload";
 import { useBlogs } from "../BlogContext";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const Write = () => {
   const { isLoaded, isSignedIn } = useUser();
-  const uploadRef = useRef();
-
   const {
     title,
     content,
@@ -17,6 +15,8 @@ const Write = () => {
     setTitle,
     setContent,
     setCategory,
+    setImgUrl,
+    imgUrl,
     createBlog,
     fetchBlogs,
   } = useBlogs();
@@ -34,7 +34,7 @@ const Write = () => {
     createBlog();
     setTitle("");
     setContent("");
-    uploadRef.current.reset();
+    setImgUrl("");
     alert("Post created!");
     fetchBlogs();
   }
@@ -73,7 +73,7 @@ const Write = () => {
       <form onSubmit={handleSubmit} className="flex flex-col gap-6">
         <div className="-mb-2 md:flex items-end">
           {/* COVER IMAGE */}
-          <Upload ref={uploadRef}/>
+          <Upload />
 
           {/* CATEGORIES */}
           <div className="mt-4 w-full md:w-fit md:ml-7 flex border rounded-md bg-gray-100 text-gray-700">

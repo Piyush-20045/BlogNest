@@ -9,7 +9,7 @@ const Navbar = () => {
     <div className="w-full h-16 border-b-2 border-black 2xl:border-none 2xl:bg-purple-50 flex items-center justify-between bg-white md:sticky top-0 z-20">
       {/*MOBILE MENU LOGO */}
       <div
-        className=" tab:hidden cursor-pointer text-3xl ml-3"
+        className=" md:hidden cursor-pointer text-3xl ml-3"
         onClick={() => {
           setOpen(!open);
         }}
@@ -23,7 +23,7 @@ const Navbar = () => {
         className="flex items-center gap-1 text-xl mobile:text-2xl font-bold font-mono"
       >
         <img
-          className="rounded-3xl w-8 tab:ml-9 tab:w-10"
+          className="rounded-3xl w-8 md:ml-9 tab:w-10"
           src="/logo.jpg"
           alt="Logo"
         />
@@ -31,7 +31,7 @@ const Navbar = () => {
       </Link>
 
       {/* DESKTOP NAVBAR */}
-      <div className="hidden tab:flex w-full items-center justify-end mr-10 gap-10 text-base font-medium">
+      <div className="hidden md:flex w-full items-center justify-end mr-10 gap-10 text-base font-medium">
         <NavLink
           to=""
           className={({ isActive }) =>
@@ -85,7 +85,7 @@ const Navbar = () => {
       </div>
 
       {/* MOBILE MENU */}
-      <div className="tab:hidden z-10 flex">
+      <div className="md:hidden z-10 flex">
         {/* LOGIN BUTTON */}
         <div className="mr-3 mt-2">
           <SignedOut>
