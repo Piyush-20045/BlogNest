@@ -9,7 +9,7 @@ const Navbar = () => {
     <div className="w-full h-16 border-b-2 border-black 2xl:border-none 2xl:bg-purple-50 flex items-center justify-between bg-white md:sticky top-0 z-20">
       {/*MOBILE MENU LOGO */}
       <div
-        className=" md:hidden cursor-pointer text-3xl ml-3"
+        className="w-7 md:hidden cursor-pointer text-3xl ml-3"
         onClick={() => {
           setOpen(!open);
         }}
@@ -102,16 +102,17 @@ const Navbar = () => {
 
         {/* MOBILE LINK LIST */}
         <div
-          className={`w-full flex flex-col justify-center items-center h-full absolute top-16 gap-8 text-lg bg-blue-50 right-0`}
-          style={{ display: open ? "flex" : "none" }}
-          onClick={() => {
-            setOpen(!open);
-          }}
+          className={`w-full flex flex-col justify-center items-center h-full absolute top-16 right-0 gap-8 text-lg bg-blue-50 transition-all duration-200 ease-in-out transform ${
+            open
+              ? "opacity-100 scale-100 translate-y-0"
+              : "opacity-0 scale-95 -translate-y-5 pointer-events-none"
+          }`}
+          onClick={() => setOpen(!open)}
         >
-          <NavLink to=""> Home </NavLink>
-          <NavLink to="posts">Blogs</NavLink>
-          <NavLink to="write">Write</NavLink>
-          <NavLink to="about">About</NavLink>
+          <NavLink to="" className="font-medium active:underline">Home</NavLink>
+          <NavLink to="posts" className="font-medium active:underline">Blogs</NavLink>
+          <NavLink to="write" className="font-medium active:underline">Write</NavLink>
+          <NavLink to="about" className="font-medium active:underline">About</NavLink>
         </div>
       </div>
     </div>

@@ -1,5 +1,15 @@
 const mongoose = require("mongoose");
 
+const commentSchema = new mongoose.Schema({
+    userName: String,
+    comment: String,
+    userProfile: String,
+    createdAt: {
+        type: Date,
+        default: Date.now,
+    }
+});
+
 const blogSchema = new mongoose.Schema({
     title: {
         type: String,
@@ -19,8 +29,8 @@ const blogSchema = new mongoose.Schema({
     createdAt: {
         type: Date,
         default: Date.now,
-    }
-
+    },
+    comments: [commentSchema],
 })
 
 module.exports = mongoose.model("Blog", blogSchema);

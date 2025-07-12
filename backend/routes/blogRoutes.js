@@ -41,6 +41,16 @@ router.put("/:id", async (req, res) => {
     }
 })
 
-
+// to add a comment
+router.post("/:id/comments", async (req, res) => {
+    try {
+        const blog = await Blog.findById(req.params.id);
+        blog.comments.push({userProfile: req.body.userProfile, userName: req.body.userName, comment: req.body.comment});
+        await blog.save();
+        res.status(200).json({ message: "Comment added" })
+    } catch (error) {
+        res.status(500).json({ error: "Failed to add the comment" })
+    }
+})
 
 module.exports = router;

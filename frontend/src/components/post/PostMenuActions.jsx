@@ -1,7 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useBlogs } from "../../BlogContext";
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
 
 const PostMenuActions = () => {
   const { fetchBlogs } = useBlogs();

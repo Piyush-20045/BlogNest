@@ -7,7 +7,7 @@ import { useBlogs } from "../BlogContext";
 import { useEffect, useRef, useState } from "react";
 
 const Write = () => {
-  const { isLoaded, isSignedIn } = useUser();
+  const { user } = useUser();
   const {
     title,
     content,
@@ -16,18 +16,9 @@ const Write = () => {
     setContent,
     setCategory,
     setImgUrl,
-    imgUrl,
     createBlog,
     fetchBlogs,
   } = useBlogs();
-
-  if (isLoaded && !isSignedIn) {
-    return (
-      <div className="m-12 text-xl font-title text-center">
-        Login to access this page...
-      </div>
-    );
-  }
 
   const handleSubmit =(e)=>{
     e.preventDefault();
@@ -124,8 +115,8 @@ const Write = () => {
         />
 
         {/* CREATE BUTTON */}
-        <button type="submit" className="my-2 px-3 py-2 w-20 text-white bg-green-700 hover:bg-green-800 rounded-md transition duration-150 ease-in-out active:scale-95">
-          Publish
+        <button type="submit" disabled={!user} className="my-2 px-3 py-2 w-fit text-white bg-green-700 hover:bg-green-800 rounded-md transition duration-150 ease-in-out active:scale-95">
+          { !user ? "Login to publish" : "Publish" }
         </button>
       </form>
     </div>

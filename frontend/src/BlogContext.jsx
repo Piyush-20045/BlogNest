@@ -11,7 +11,6 @@ export const BlogProvider = ({ children }) => {
   const [category, setCategory] = useState("Web Dev");
   const [blogs, setBlogs] = useState([]);
   const [imgUrl, setImgUrl] = useState("");
-  
 
   const [filteredBlogs, setFilteredBlogs] = useState([]);
 

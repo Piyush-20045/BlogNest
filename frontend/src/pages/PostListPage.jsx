@@ -13,11 +13,8 @@ const PostListPage = () => {
 
   return (
     <div>
-      {/* TITLE */}
-      <h1 className="ml-7 md:ml-16 mt-6 text-2xl font-serif">{category}</h1>
-
       {/* MOBILE--'MORE CATEGORIES OPTION' */}
-      <div className="-mt-3 md:hidden">
+      <div className="mt-3 md:hidden">
         <button
           onClick={() => setOpen(!Open)}
           className="md:hidden ml-7 my-2 p-2 bg-gray-400 text-sm text-white rounded-md "
@@ -25,13 +22,15 @@ const PostListPage = () => {
           {Open ? "ⓧ Close" : "☰ More Categories"}
         </button>
         <div
-          className={`transition-all duration-500 ease-out scale-95 ${
-            Open ? "block -mt-4" : "hidden"
+          className={`transition-all duration-500 ease-in-out overflow-hidden ${
+            Open ? "max-h-96 opacity-100" : "max-h-0 opacity-0 pointer-events-none"
           }`}
         >
           <Categories />
         </div>
       </div>
+
+      <h1 className="ml-7 md:ml-16 md:mt-6 text-2xl font-serif">{category}</h1>
 
       {/* POSTLIST AND SIDEMENU */}
       <div className="flex mb-10">
