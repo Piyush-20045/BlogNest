@@ -3,6 +3,7 @@ import Upload from "../components/common/Upload";
 import { useState, useRef, useEffect } from "react";
 import { useBlogs } from "../BlogContext";
 import { useNavigate, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const EditBlog = () => {
   const { id } = useParams();
@@ -27,11 +28,11 @@ const EditBlog = () => {
         }
       );
       const data = await res.json();
-      alert("Blog updated successfully!");
+      toast.success("Blog updated successfully!", {position:"top-center"});
       navigate(`/post/${id}`);
       fetchBlogs();
     } catch (error) {
-      console.log("Error in saving", error);
+      toast.error("Error in saving", {position:"top-center"});
     }
   };
   // Fetching journals

@@ -36,7 +36,7 @@ const PostListPage = () => {
       <div className="flex mb-10">
         <div className="p-3 md:w-4/5">
           {/* SEARCH */}
-          <div className="md:mx-12">
+          <div className="mx-3 mb-4 md:mx-12">
             <Search />
           </div>
           <PostList />

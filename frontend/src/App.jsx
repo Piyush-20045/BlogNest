@@ -9,6 +9,8 @@ import SinglePostPage from "./pages/SinglePostPage.jsx";
 import ScrollToTop from "./components/ScrollToTop.jsx";
 import PostListPage from "./pages/PostListPage.jsx";
 import EditBlog from "./pages/EditBlog.jsx";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   return (
@@ -25,6 +27,8 @@ function App() {
         <Route path="/post/:id" element={<SinglePostPage />} />
         <Route path="/edit/:id" element={<EditBlog />} />
       </Routes>
+      {/* REACT-TOASTIFY */}
+      <ToastContainer position="top-right" autoClose={2000} />
     </div>
   );
 }

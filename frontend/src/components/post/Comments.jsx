@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { useBlogs } from "../../BlogContext";
 import { useState } from "react";
 import { useUser } from "@clerk/clerk-react";
+import { toast } from "react-toastify";
 
 const Comments = () => {
   const [comment, setComment] = useState("");
@@ -26,11 +27,11 @@ const Comments = () => {
         }
       );
       const data = await response.json();
-      alert("Comment added");
+      toast.success("Comment added");
       fetchBlogs();
       setComment("");
     } catch (error) {
-      console.error("Error in adding comment", error);
+      toast.error("Failed to add comment");
     }
   };
   return (

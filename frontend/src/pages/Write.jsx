@@ -5,6 +5,7 @@ import "../styles/write.css";
 import Upload from "../components/common/Upload";
 import { useBlogs } from "../BlogContext";
 import { useEffect, useRef, useState } from "react";
+import { toast } from "react-toastify";
 
 const Write = () => {
   const { user } = useUser();
@@ -26,7 +27,7 @@ const Write = () => {
     setTitle("");
     setContent("");
     setImgUrl("");
-    alert("Post created!");
+    toast.success("Post created!", {position:"top-center"});
     fetchBlogs();
   }
 

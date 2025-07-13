@@ -1,5 +1,6 @@
 import { useState, useRef } from "react";
 import emailjs from "@emailjs/browser";
+import { toast } from "react-toastify";
 
 const About = () => {
   const form = useRef();
@@ -15,7 +16,7 @@ const About = () => {
       setFormSent(true);
       form.current.reset();
     } catch (error) {
-      alert("Error in sending message!!");
+      toast.error("Error in sending message!!");
       console.log("FAILED...", error.text);
     }
   };
@@ -91,7 +92,7 @@ const About = () => {
             <button
               type="submit"
               value="Send"
-              className="mb-4 px-3 py-2 text-white bg-slate-500 hover:bg-slate-600 rounded-md"
+              className="mb-4 px-3 py-2 text-white bg-slate-700 hover:bg-slate-800 rounded-md"
             >
               Send
             </button>

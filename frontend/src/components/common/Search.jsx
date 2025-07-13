@@ -22,7 +22,7 @@ const Search = () => {
 
   return (
     // className="flex items-center gap-2 p-2 rounded-full bg-gray-100"
-    <div className="flex item-center gap-2 md:w-full h-10 m-3 md:m-0 p-3 rounded-full bg-gray-200 outline-none">
+    <div className="flex item-center gap-2 md:w-full h-10 p-3 rounded-full bg-gray-200 outline-none">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         x="0px"

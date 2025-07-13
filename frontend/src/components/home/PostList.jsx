@@ -5,7 +5,7 @@ const PostList = () => {
   const { filteredBlogs } = useBlogs();
   return (
     <div>
-      <p className="w-full mt-1 mb-4 text-lg text-center text-gray-600">
+      <p className="w-full md:mt-1 mb-4 text-lg text-center text-gray-700">
         Recent Posts
       </p>
 

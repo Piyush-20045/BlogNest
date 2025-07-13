@@ -1,6 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useBlogs } from "../../BlogContext";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const PostMenuActions = () => {
   const { fetchBlogs } = useBlogs();
@@ -15,11 +16,11 @@ const PostMenuActions = () => {
       await fetch(`${import.meta.env.VITE_BACKEND_PORT}/api/blogs/${id}`, {
         method: "DELETE",
       });
-      alert("Blog deleted successfully!");
+      toast.success("Blog deleted successfully!");
       fetchBlogs();
       navigate("/posts");
     } catch (error) {
-      alert("Error in deleting blog", error);
+      toast.error("Error in deleting blog");
     }
   };
   return (
