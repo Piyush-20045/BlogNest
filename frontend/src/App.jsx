@@ -12,6 +12,7 @@ import EditBlog from "./pages/EditBlog.jsx";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import BookmarkPosts from "./pages/BookmarkPosts.jsx";
+import NotFound from "./pages/NotFound.jsx";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
       <Navbar />
       <ScrollToTop />
       <Routes>
+        <Route path="*" element={<NotFound />} />
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/login" element={<Login />} />
