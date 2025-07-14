@@ -27,8 +27,8 @@ const Write = () => {
     setTitle("");
     setContent("");
     setImgUrl("");
-    toast.success("Post created!", {position:"top-center"});
     fetchBlogs();
+    toast.success("Post created!", {position:"top-center"});
   }
 
   // quill-editor copy-paste the inline style too , so this function prevents it

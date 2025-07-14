@@ -37,7 +37,7 @@ const Bookmark = () => {
     <div className="relative group inline-block">
       <button
         onClick={toggleBookmark}
-        className="w-4 active:scale-95"
+        className="w-4 transition duration-200 active:scale-95"
       >
         {bookmarked ? (
           <img src="/bookmarked.svg" alt="bookmarked" />
