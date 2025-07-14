@@ -3,6 +3,13 @@ import { useBlogs } from "../../BlogContext";
 
 const PostList = () => {
   const { filteredBlogs } = useBlogs();
+
+  if (filteredBlogs.length === 0)
+    return (
+      <div className="mt-12 p-4 text-2xl text-center text-gray-600">
+        No post found!
+      </div>
+    );
   return (
     <div>
       <p className="w-full md:mt-1 mb-4 text-lg text-center text-gray-700">

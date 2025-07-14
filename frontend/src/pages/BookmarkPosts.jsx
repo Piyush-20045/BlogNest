@@ -17,6 +17,13 @@ const BookmarkPosts = () => {
     blog.bookmarkedBy.includes(user.id)
   );
 
+  if (bookmarkPosts.length === 0)
+    return (
+      <div className="mt-8 p-4 text-xl text-center text-gray-600">
+        You do not have any bookmark post!
+      </div>
+    );
+
   return (
     <div>
       <p className="w-full mt-5 mb-4 text-lg md:text-2xl text-center text-gray-700">
