@@ -6,7 +6,7 @@ const PostList = () => {
 
   if (filteredBlogs.length === 0)
     return (
-      <div className="mt-12 p-4 text-2xl text-center text-gray-600">
+      <div className="mb-24 my-12 p-4 text-2xl text-center text-gray-600">
         No post found!
       </div>
     );
