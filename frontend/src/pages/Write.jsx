@@ -21,15 +21,15 @@ const Write = () => {
     fetchBlogs,
   } = useBlogs();
 
-  const handleSubmit =(e)=>{
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    createBlog();
+    await createBlog();
     setTitle("");
     setContent("");
     setImgUrl("");
     fetchBlogs();
-    toast.success("Post created!", {position:"top-center"});
-  }
+    toast.success("Post created!", { position: "top-center" });
+  };
 
   // quill-editor copy-paste the inline style too , so this function prevents it
   const quillRef = useRef();
@@ -39,7 +39,7 @@ const Write = () => {
     // Remove all formatting when pasting
     editor.clipboard.addMatcher(Node.ELEMENT_NODE, (node, delta) => {
       // Remove only style attributes (like background, font, etc.)
-      delta.ops = delta.ops.map(op => {
+      delta.ops = delta.ops.map((op) => {
         if (op.attributes) {
           // Remove unwanted styles like background, color, font, etc.
           const { background, color, font, ...allowedAttrs } = op.attributes;
@@ -75,7 +75,7 @@ const Write = () => {
             <select
               id="category"
               value={category}
-              onChange={(e)=>setCategory(e.target.value)}
+              onChange={(e) => setCategory(e.target.value)}
               className="p-2 rounded outline-none bg-white text-sm text-gray-800 cursor-pointer"
             >
               <option value="Web Dev">Web Dev</option>
@@ -116,8 +116,12 @@ const Write = () => {
         />
 
         {/* CREATE BUTTON */}
-        <button type="submit" disabled={!user} className="my-2 px-3 py-2 w-fit text-white bg-green-700 hover:bg-green-800 rounded-md transition duration-150 ease-in-out active:scale-95">
-          { !user ? "Login to publish" : "Publish" }
+        <button
+          type="submit"
+          disabled={!user}
+          className="my-2 px-3 py-2 w-fit text-white bg-green-700 hover:bg-green-800 rounded-md transition duration-150 ease-in-out active:scale-95"
+        >
+          {!user ? "Login to publish" : "Publish"}
         </button>
       </form>
     </div>
