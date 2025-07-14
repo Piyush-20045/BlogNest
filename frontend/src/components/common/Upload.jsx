@@ -9,7 +9,7 @@ const Upload = () => {
     if (!file) return;
 
     try {
-      const authRes = await fetch("http://localhost:5000/uploadAuth");
+      const authRes = await fetch(`${import.meta.env.VITE_BACKEND_PORT}/uploadAuth`);
       const uploadAuth = await authRes.json();
 
       const formData = new FormData();
