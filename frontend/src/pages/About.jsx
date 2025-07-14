@@ -1,8 +1,10 @@
 import { useState, useRef } from "react";
 import emailjs from "@emailjs/browser";
 import { toast } from "react-toastify";
+import {useUser} from "@clerk/clerk-react";
 
 const About = () => {
+  const { user } = useUser();
   const form = useRef();
   const [formSent, setFormSent] = useState(false);
 
@@ -21,8 +23,8 @@ const About = () => {
     }
   };
   const handleGoBack = () => {
-    setFormSent(!formSent)
-  }
+    setFormSent(!formSent);
+  };
   return (
     <div className="my-5 flex flex-col md:flex-row w-full">
       {/* ABOUT */}
@@ -34,8 +36,8 @@ const About = () => {
           Welcome to the BlogNest! My name is{" "}
           <span className="font-semibold">Piyush Yadav</span>, and I am
           passionate about sharing my experiences, and knowledge with the world.
-          BlogNest is a space where I and you can share various topics,
-          from technology and programming to personal development and lifestyle.
+          BlogNest is a space where I and you can share various topics, from
+          technology and programming to personal development and lifestyle.
         </p>
         <p className="text-lg text-gray-600 mb-6 text-center max-w-2xl">
           Thank you for visiting, and I look forward to sharing my thoughts with
@@ -58,7 +60,10 @@ const About = () => {
           // AFTER SUBMISSION MESSAGE
           <div className="flex flex-col items-center">
             <p className="mt-12 text-center">Form submitted successfully!</p>
-            <button onClick={handleGoBack} className="m-4 px-3 py-2 bg-slate-400 hover:bg-slate-500 rounded-md">
+            <button
+              onClick={handleGoBack}
+              className="m-4 px-3 py-2 bg-slate-400 hover:bg-slate-500 rounded-md"
+            >
               Go back
             </button>
           </div>
@@ -90,11 +95,12 @@ const About = () => {
               className="p-2 h-24 rounded-md outline-none resize-none"
             ></textarea>
             <button
+              disabled={!user}
               type="submit"
               value="Send"
-              className="mb-4 px-3 py-2 text-white bg-slate-700 hover:bg-slate-800 rounded-md"
+              className="mb-4 px-3 py-2 text-white bg-slate-700 hover:bg-slate-800 rounded-md transition active:scale-95"
             >
-              Send
+              {!user ? "Login to Send!" : "Send"}
             </button>
           </form>
         )}

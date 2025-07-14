@@ -1,17 +1,31 @@
 import { Link } from "react-router-dom";
-import { useBlogs } from "../../BlogContext";
+import { useBlogs } from "../BlogContext";
+import { useUser } from "@clerk/clerk-react";
 
-const PostList = () => {
-  const { filteredBlogs } = useBlogs();
+const BookmarkPosts = () => {
+  const { user } = useUser();
+  const { blogs } = useBlogs();
+
+  if (!user)
+    return (
+      <div className="mt-8 p-4 text-xl text-center text-gray-600">
+        Please login to view bookmarks.
+      </div>
+    );
+
+  const bookmarkPosts = blogs.filter((blog) =>
+    blog.bookmarkedBy.includes(user.id)
+  );
+
   return (
     <div>
-      <p className="w-full md:mt-1 mb-4 text-lg text-center text-gray-700">
-        Recent Posts
+      <p className="w-full mt-5 mb-4 text-lg md:text-2xl text-center text-gray-700">
+        All bookmark posts!
       </p>
 
       {/* All mapped blogs */}
-      <div className="flex justify-center flex-wrap sm:space-x-2 space-y-2">
-        {filteredBlogs.map((blog) => (
+      <div className="flex justify-center md:px-12 flex-wrap sm:space-x-2 space-y-2">
+        {bookmarkPosts.map((blog) => (
           <div
             key={blog._id}
             className="mt-2 w-80 p-1 sm:w-72 bg-gray-50 border border-gray-300 rounded-md hover:shadow-lg transition-shadow"
@@ -57,4 +71,4 @@ const PostList = () => {
   );
 };
 
-export default PostList;
+export default BookmarkPosts;

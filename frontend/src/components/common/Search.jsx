@@ -21,8 +21,7 @@ const Search = () => {
   }, [search, blogs, category])
 
   return (
-    // className="flex items-center gap-2 p-2 rounded-full bg-gray-100"
-    <div className="flex item-center gap-2 md:w-full h-10 p-3 rounded-full bg-gray-200 outline-none">
+    <div className="flex item-center gap-2 h-10 p-3 rounded-full bg-gray-200 outline-none">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         x="0px"
@@ -42,7 +41,7 @@ const Search = () => {
         onChange={(e) => {
           setSearch(e.target.value);
         }}
-        className="focus:outline-none bg-transparent w-full "
+        className="focus:outline-none bg-transparent w-full"
       />
     </div>
   );

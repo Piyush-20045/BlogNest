@@ -45,11 +45,33 @@ router.put("/:id", async (req, res) => {
 router.post("/:id/comments", async (req, res) => {
     try {
         const blog = await Blog.findById(req.params.id);
-        blog.comments.push({userProfile: req.body.userProfile, userName: req.body.userName, comment: req.body.comment});
+        blog.comments.push({ userProfile: req.body.userProfile, userName: req.body.userName, comment: req.body.comment });
         await blog.save();
         res.status(200).json({ message: "Comment added" })
     } catch (error) {
         res.status(500).json({ error: "Failed to add the comment" })
+    }
+})
+
+// to bookmark a post
+router.post("/:id/bookmark", async (req, res) => {
+    const { userId } = req.body;
+    try {
+        const blog = await Blog.findById(req.params.id);
+        const isBookmarked = blog.bookmarkedBy.includes(userId);
+
+        if (isBookmarked) {
+            // remove bookmark
+            blog.bookmarkedBy = blog.bookmarkedBy.filter((id) => id !== userId);
+        } else {
+            // add bookmark
+            blog.bookmarkedBy.push(userId);
+        }
+
+        await blog.save();
+        res.status(200).json({ succes: true, isBookmarked: !isBookmarked });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
     }
 })
 

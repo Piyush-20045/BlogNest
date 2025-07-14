@@ -11,6 +11,7 @@ import PostListPage from "./pages/PostListPage.jsx";
 import EditBlog from "./pages/EditBlog.jsx";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import BookmarkPosts from "./pages/BookmarkPosts.jsx";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route path="/posts" element={<PostListPage />} />
         <Route path="/post/:id" element={<SinglePostPage />} />
         <Route path="/edit/:id" element={<EditBlog />} />
+        <Route path="/bookmarks" element={<BookmarkPosts />} />
       </Routes>
       {/* REACT-TOASTIFY */}
       <ToastContainer position="top-right" autoClose={2000} />

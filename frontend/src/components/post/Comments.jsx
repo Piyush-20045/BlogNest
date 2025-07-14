@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useBlogs } from "../../BlogContext";
 import { useState } from "react";
 import { useUser } from "@clerk/clerk-react";
@@ -55,9 +55,9 @@ const Comments = () => {
         <button
           type="submit"
           disabled={!user}
-          className="text-sm tab:text-base text-white bg-blue-700 ml-2 px-3 py-2 tab:py-3 rounded-md hover:bg-blue-600"
+          className="text-sm tab:text-base text-white bg-blue-700 ml-2 px-3 py-2 tab:py-3 rounded-md transition hover:bg-blue-600 active:scale-95"
         >
-          {!user ? "Login to comment!" : "Comment"}
+          {!user ? <Link to="/login">Login to comment!</Link> : "Comment"}
         </button>
       </form>
 
@@ -73,7 +73,9 @@ const Comments = () => {
                 className="h-8 w-8 rounded-full
                 "
               />
-              <span className="text-gray-800 font-medium">{comment.userName}</span>
+              <span className="text-gray-800 font-medium">
+                {comment.userName || "Anonymous"}
+              </span>
               <span className="text-gray-500 text-sm">
                 {comment.createdAt.slice(0, 10)}
               </span>

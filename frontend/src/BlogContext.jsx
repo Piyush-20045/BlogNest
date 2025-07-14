@@ -37,7 +37,6 @@ export const BlogProvider = ({ children }) => {
         body: JSON.stringify(blogData),
       });
       const data = await response.json();
-      console.log("Blog saved", data);
     } catch (error) {
       console.error("Error saving blog", error);
     }

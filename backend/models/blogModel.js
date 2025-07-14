@@ -31,6 +31,7 @@ const blogSchema = new mongoose.Schema({
         default: Date.now,
     },
     comments: [commentSchema],
+    bookmarkedBy:[{ type: String}]
 })
 
 module.exports = mongoose.model("Blog", blogSchema);

@@ -31,7 +31,7 @@ const Navbar = () => {
       </Link>
 
       {/* DESKTOP NAVBAR */}
-      <div className="hidden md:flex w-full items-center justify-end mr-10 gap-10 text-base font-medium">
+      <div className="hidden md:flex w-full items-center justify-end mr-10 gap-6 tab:gap-10 text-base font-medium">
         <NavLink
           to=""
           className={({ isActive }) =>
@@ -63,6 +63,16 @@ const Navbar = () => {
           Write
         </NavLink>
         <NavLink
+          to="bookmarks"
+          className={({ isActive }) =>
+            `px-2 py-1 rounded active:scale-95 hover:text-gray-800 hover:bg-gray-100 ${
+              isActive ? " border bg-slate-100 text-gray-800" : ""
+            }`
+          }
+        >
+          Bookmarks
+        </NavLink>
+        <NavLink
           to="about"
           className={({ isActive }) =>
             `px-2 py-1 rounded active:scale-95 hover:text-gray-800 hover:bg-gray-100 ${
@@ -74,7 +84,7 @@ const Navbar = () => {
         </NavLink>
         <SignedOut>
           <NavLink to="login">
-            <button className="bg-gray-500 text-white px-4 py-2 tab:mr-2 tab:ml-6 rounded-3xl  hover:bg-gray-600">
+            <button className="bg-gray-500 text-white px-4 py-2 tab:mr-2 tab:ml-6 rounded-md transition hover:bg-gray-600 active:scale-95">
               Login
             </button>
           </NavLink>
@@ -90,7 +100,7 @@ const Navbar = () => {
         <div className="mr-3 mt-2">
           <SignedOut>
             <NavLink to="login">
-              <button className="bg-gray-500 text-white mb-1.5 px-3 py-2 rounded-md text-sm hover:bg-gray-600">
+              <button className="bg-gray-500 text-white mb-1.5 px-3 py-2 rounded-md text-sm transition hover:bg-gray-600 active:scale-95">
                 Login
               </button>
             </NavLink>
@@ -109,10 +119,21 @@ const Navbar = () => {
           }`}
           onClick={() => setOpen(!open)}
         >
-          <NavLink to="" className="font-medium active:underline">Home</NavLink>
-          <NavLink to="posts" className="font-medium active:underline">Blogs</NavLink>
-          <NavLink to="write" className="font-medium active:underline">Write</NavLink>
-          <NavLink to="about" className="font-medium active:underline">About</NavLink>
+          <NavLink to="" className="font-medium active:underline">
+            Home
+          </NavLink>
+          <NavLink to="posts" className="font-medium active:underline">
+            Blogs
+          </NavLink>
+          <NavLink to="write" className="font-medium active:underline">
+            Write
+          </NavLink>
+          <NavLink to="bookmarks" className="font-medium active:underline">
+            Bookmarks
+          </NavLink>
+          <NavLink to="about" className="font-medium active:underline">
+            About
+          </NavLink>
         </div>
       </div>
     </div>
