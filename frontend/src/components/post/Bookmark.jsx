@@ -8,27 +8,44 @@ const Bookmark = () => {
   const { user } = useUser();
   const { blogs, fetchBlogs } = useBlogs();
   const [bookmarked, setBookmarked] = useState(false);
+  const [loading, setLoading] = useState(false);
   const blog = blogs.find((j) => j._id === id);
 
   useEffect(() => {
     if (user && blog.bookmarkedBy?.includes(user.id)) {
       setBookmarked(true);
+    } else {
+      setBookmarked(false);
     }
   }, [user, blog]);
 
   const toggleBookmark = async () => {
-    const res = await fetch(
-      `${import.meta.env.VITE_BACKEND_PORT}/api/blogs/${id}/bookmark`,
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ userId: user.id }),
-      }
-    );
-    const data = await res.json();
+    if (loading) return; // prevent spamming
+    setBookmarked((prev) => !prev); // instantly update UI
+    setLoading(true);
 
-    setBookmarked(data.isBookmarked);
-    fetchBlogs();
+    try {
+      const res = await fetch(
+        `${import.meta.env.VITE_BACKEND_PORT}/api/blogs/${id}/bookmark`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ userId: user.id }),
+        }
+      );
+      const data = await res.json();
+
+      if (!res.ok) {
+        setBookmarked((prev) => !prev); // revert on error
+        toast.error(data.message || "Bookmark failed");
+      }
+    } catch (err) {
+      setBookmarked((prev) => !prev); // revert on error
+      console.error("Error bookmarking:", err);
+    } finally {
+      setLoading(false);
+      fetchBlogs(); // refresh bookmark list
+    }
   };
 
   if (!user) return null;
