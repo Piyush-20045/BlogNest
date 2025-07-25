@@ -11,6 +11,7 @@ export const BlogProvider = ({ children }) => {
   const [category, setCategory] = useState("Web Dev");
   const [blogs, setBlogs] = useState([]);
   const [imgUrl, setImgUrl] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const [filteredBlogs, setFilteredBlogs] = useState([]);
 
@@ -44,6 +45,7 @@ export const BlogProvider = ({ children }) => {
 
   //   fetching blogs
   const fetchBlogs = async () => {
+    setLoading(true);
     try {
       const res = await fetch(`${import.meta.env.VITE_BACKEND_PORT}/api/blogs`);
       const data = await res.json();
@@ -51,6 +53,7 @@ export const BlogProvider = ({ children }) => {
     } catch (error) {
       console.error("Error in fetching blogs", error);
     }
+    setLoading(false);
   };
   useEffect(() => {
     fetchBlogs();
@@ -73,6 +76,7 @@ export const BlogProvider = ({ children }) => {
         fetchBlogs,
         filteredBlogs,
         setFilteredBlogs,
+        loading,
       }}
     >
       {children}

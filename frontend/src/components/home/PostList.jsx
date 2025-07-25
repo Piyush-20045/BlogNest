@@ -2,8 +2,15 @@ import { Link } from "react-router-dom";
 import { useBlogs } from "../../BlogContext";
 
 const PostList = () => {
-  const { filteredBlogs } = useBlogs();
+  const { filteredBlogs, loading } = useBlogs();
 
+  if (loading) {
+    return (
+      <div className="text-center text-gray-600 my-10 text-lg">
+        Loading Posts...
+      </div>
+    )
+  }
   if (filteredBlogs.length === 0)
     return (
       <div className="mb-24 my-12 p-4 text-2xl text-center text-gray-600">
