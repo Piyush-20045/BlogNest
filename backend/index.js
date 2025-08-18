@@ -14,6 +14,10 @@ connectDB();
 app.use("/api/blogs", blogRoutes);
 app.use("/uploadAuth", uploadAuthRoute);
 
+// Ping route for cold start problem of render
+app.get("/ping", (req, res) => {
+    res.status(200).json({ message: "pong" });
+});
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, ()=> console.log(`Server running on port ${PORT}`));
