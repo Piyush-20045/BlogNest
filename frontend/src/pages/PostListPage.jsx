@@ -3,6 +3,7 @@ import Categories from "../components/common/Categories";
 import Search from "../components/common/Search";
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
+import Footer from "../components/home/Footer";
 
 const PostListPage = () => {
   const [Open, setOpen] = useState(false);
@@ -23,7 +24,9 @@ const PostListPage = () => {
         </button>
         <div
           className={`transition-all duration-500 ease-in-out overflow-hidden ${
-            Open ? "max-h-96 opacity-100" : "max-h-0 opacity-0 pointer-events-none"
+            Open
+              ? "max-h-96 opacity-100"
+              : "max-h-0 opacity-0 pointer-events-none"
           }`}
         >
           <Categories />
@@ -45,6 +48,9 @@ const PostListPage = () => {
           <Categories />
         </div>
       </div>
+
+      {/* FOOTER */}
+      <Footer />
     </div>
   );
 };
