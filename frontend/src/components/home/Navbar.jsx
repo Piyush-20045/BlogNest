@@ -5,8 +5,16 @@ import { SignedIn, SignedOut, UserButton } from "@clerk/clerk-react";
 const Navbar = () => {
   const [open, setOpen] = useState(false);
 
+  const MobileLinks = [
+    { name: "Home", link: "/" },
+    { name: "Blogs", link: "/posts" },
+    { name: "Write", link: "/write" },
+    { name: "Bookmarks", link: "bookmarks" },
+    { name: "About", link: "/about" },
+  ];
+
   return (
-    <div className="w-full h-16 border-b-2 border-black 2xl:border-none 2xl:bg-purple-50 flex items-center justify-between bg-white md:sticky top-0 z-20">
+    <div className="w-full h-16 border-b-2 border-black 2xl:border-none bg-neutral-100 flex items-center justify-between md:sticky top-0 z-20">
       {/*MOBILE MENU LOGO */}
       <div
         className="w-7 md:hidden cursor-pointer text-3xl ml-3"
@@ -32,56 +40,18 @@ const Navbar = () => {
 
       {/* DESKTOP NAVBAR */}
       <div className="hidden md:flex w-full items-center justify-end mr-10 gap-6 tab:gap-10 text-base font-medium">
-        <NavLink
-          to=""
-          className={({ isActive }) =>
-            `px-2 py-1 rounded active:scale-95 hover:text-gray-800 hover:bg-gray-100 ${
-              isActive ? " border bg-slate-100 text-gray-800" : ""
-            }`
-          }
-        >
-          Home
-        </NavLink>
-        <NavLink
-          to="posts"
-          className={({ isActive }) =>
-            `px-2 py-1 rounded active:scale-95 hover:text-gray-800 hover:bg-gray-100 ${
-              isActive ? " border bg-slate-100 text-gray-800" : ""
-            }`
-          }
-        >
-          Blogs
-        </NavLink>
-        <NavLink
-          to="write"
-          className={({ isActive }) =>
-            `px-2 py-1 rounded active:scale-95 hover:text-gray-800 hover:bg-gray-100 ${
-              isActive ? " border bg-slate-100 text-gray-800" : ""
-            }`
-          }
-        >
-          Write
-        </NavLink>
-        <NavLink
-          to="bookmarks"
-          className={({ isActive }) =>
-            `px-2 py-1 rounded active:scale-95 hover:text-gray-800 hover:bg-gray-100 ${
-              isActive ? " border bg-slate-100 text-gray-800" : ""
-            }`
-          }
-        >
-          Bookmarks
-        </NavLink>
-        <NavLink
-          to="about"
-          className={({ isActive }) =>
-            `px-2 py-1 rounded active:scale-95 hover:text-gray-800 hover:bg-gray-100 ${
-              isActive ? " border bg-slate-100 text-gray-800" : ""
-            }`
-          }
-        >
-          About
-        </NavLink>
+        {MobileLinks.map((link) => (
+          <NavLink
+            to={link.link}
+            className={({ isActive }) =>
+              `px-2 py-1 rounded active:scale-95 hover:text-gray-800 hover:bg-gray-100 ${
+                isActive ? " border bg-slate-100 text-gray-800" : ""
+              }`
+            }
+          >
+            {link.name}
+          </NavLink>
+        ))}
         <SignedOut>
           <NavLink to="login">
             <button className="bg-gray-500 text-white px-4 py-2 tab:mr-2 tab:ml-6 rounded-md transition hover:bg-gray-600 active:scale-95">
@@ -112,28 +82,18 @@ const Navbar = () => {
 
         {/* MOBILE LINK LIST */}
         <div
-          className={`w-full flex flex-col justify-center items-center h-full absolute top-16 right-0 gap-8 text-lg bg-blue-50 transition-all duration-200 ease-in-out transform ${
+          className={`w-full flex flex-col justify-center items-center h-full absolute top-16 right-0 gap-8 text-lg bg-neutral-50 transition-all duration-200 ease-in-out transform ${
             open
               ? "opacity-100 scale-100 translate-y-0"
               : "opacity-0 scale-95 -translate-y-5 pointer-events-none"
           }`}
           onClick={() => setOpen(!open)}
         >
-          <NavLink to="" className="font-medium active:underline">
-            Home
-          </NavLink>
-          <NavLink to="posts" className="font-medium active:underline">
-            Blogs
-          </NavLink>
-          <NavLink to="write" className="font-medium active:underline">
-            Write
-          </NavLink>
-          <NavLink to="bookmarks" className="font-medium active:underline">
-            Bookmarks
-          </NavLink>
-          <NavLink to="about" className="font-medium active:underline">
-            About
-          </NavLink>
+          {MobileLinks.map((link) => (
+            <NavLink to={link.link} className="active:underline">
+              {link.name}
+            </NavLink>
+          ))}
         </div>
       </div>
     </div>

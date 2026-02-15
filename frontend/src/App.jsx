@@ -16,7 +16,7 @@ import NotFound from "./pages/NotFound.jsx";
 
 function App() {
   return (
-    <div className="2xl:px-64">
+    <div className="2xl:px-32">
       <Navbar />
       <ScrollToTop />
       <Routes>

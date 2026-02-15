@@ -6,7 +6,7 @@ import Footer from "../components/home/Footer";
 const Home = () => {
   return (
     <div>
-      <div className="flex flex-col mx-6 tab:mx-12 my-7">
+      <div className="flex flex-col min-h-screen mx-6 tab:mx-12 my-7">
         {/* BREADCRUMBS */}
         <div className="flex gap-3">
           <Link to="/">Home</Link>
@@ -37,7 +37,7 @@ const Home = () => {
           <span className="hidden xl:block font-medium text-xl">|</span>
 
           {/* LINKS */}
-          <div className="hidden md:flex flex-wrap gap-10 flex-1">
+          <div className="hidden md:flex flex-wrap gap-4 tab:gap-10 flex-1">
             <Link
               to="/posts"
               className="px-4 py-2 rounded-full bg-gray-600 text-white "

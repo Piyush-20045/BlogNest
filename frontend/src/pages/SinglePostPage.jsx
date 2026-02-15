@@ -20,7 +20,7 @@ const SinglePostPage = () => {
   }
 
   return (
-    <div className="p-1 md:p-6 mb-6 bg-white h-full overflow-x-hidden">
+    <div className="p-1 md:p-6 mb-6 bg-neutral-100 h-full overflow-x-hidden">
       {/* POST AND SIDEBAR */}
       <div className="flex">
         {/* LEFT SIDE ALL CONTENT */}

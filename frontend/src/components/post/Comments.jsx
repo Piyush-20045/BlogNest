@@ -24,7 +24,7 @@ const Comments = () => {
             userName: user.fullName,
             comment,
           }),
-        }
+        },
       );
       const data = await response.json();
       toast.success("Comment added");
@@ -35,14 +35,11 @@ const Comments = () => {
     }
   };
   return (
-    <div className="m-3 p-1 md:w-4/5 rounded-lg">
+    <div className="m-3 p-1 md:w-4/5 bg-neutral-200/40 rounded-lg">
       <h1 className="p-1 mt-4 text-blue-900 underline">Comments</h1>
 
       {/* INPUT AND COMMENT BTN */}
-      <form
-        onSubmit={createComment}
-        className=" mt-3 py-2 md:p-2 rounded-xl bg-gray-100"
-      >
+      <form onSubmit={createComment} className=" mt-3 py-2 md:p-2 rounded-xl">
         <input
           required
           type="text"

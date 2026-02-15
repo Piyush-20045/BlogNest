@@ -25,9 +25,9 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="mt-12 bg-gray-200">
+    <footer className="mt-12 bg-gray-200 2xl:bg-gray-100 2xl:border-t">
       {/* Main Footer Content */}
-      <div className="container mx-auto px-6 py-12 grid grid-cols-1 md:ml-4 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div className="container mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         {/* Brand Section */}
         <div className="space-y-4">
           <h2 className="flex items-center gap-1 text-2xl font-bold font-mono">
@@ -109,7 +109,6 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        
       </div>
 
       {/* Bottom Bar */}
