@@ -36,7 +36,7 @@ const PostListPage = () => {
       <h1 className="ml-7 md:ml-16 md:mt-6 text-2xl font-serif">{category}</h1>
 
       {/* POSTLIST AND SIDEMENU */}
-      <div className="flex mb-10">
+      <div className="min-h-screen flex mb-10">
         <div className="p-3 w-full md:w-4/5">
           {/* SEARCH */}
           <div className="mx-3 mb-4 md:mx-12">
